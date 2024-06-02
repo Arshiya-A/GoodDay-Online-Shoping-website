@@ -1,0 +1,84 @@
+<div class="col border border-1  border-dark-subtle side-category" style="max-width: 25%;">
+
+    <button class="btn btn-group w-100 border  border-1  border-dark-subtle m-1 " type="button" id="triggerId"
+        onclick="OpenWareGroup()">
+        Waregroups
+    </button>
+
+
+    <button class="btn btn-group w-100 border  border-1  border-dark-subtle m-1 " type="button" id="triggerId"
+        onclick="OpenWareSubGroup()">
+        Waresubgroups
+    </button>
+
+
+    <button class="btn btn-group w-100 border  border-1  border-dark-subtle m-1 " type="button" id="triggerId"
+        onclick="OpenWares()">
+        Wares
+    </button>
+
+    <button class="btn btn-group w-100 border  border-1  border-dark-subtle m-1 " type="button" id="triggerId"
+        onclick="OpenOrders()">
+        Orders
+    </button>
+
+</div>
+
+<script>
+    function OpenWareGroup() {
+        $("#adminPanelTitle").html("Waregroup");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/Managewaregroup/all",
+            success: function (data) {
+                $("#wares").html(data);
+                $("#mySidenav").css("display", "none");
+
+            }
+        })
+
+    }
+
+
+    function OpenWareSubGroup() {
+        $("#adminPanelTitle").html("WareSubgroup");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWareSubGroup/all",
+            success: function (data) {
+                $("#wares").html(data);
+                $("#mySidenav").css("display", "none");
+
+            }
+        })
+
+    }
+
+    function OpenWares() {
+        $("#adminPanelTitle").html("Wares");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWare/all",
+            success: function (data) {
+                $("#wares").html(data);
+                $("#mySidenav").css("display", "none");
+
+            }
+        })
+    }
+
+    function OpenOrders() {
+        $("#adminPanelTitle").html("Orders");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/Order/GetOrders",
+            success: function (data) {
+                $("#wares").html(data);
+                $("#mySidenav").css("display", "none");
+
+            }
+        })
+    }
+
+
+</script>

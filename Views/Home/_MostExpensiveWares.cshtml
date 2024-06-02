@@ -1,0 +1,32 @@
+@model IEnumerable<Database.Ware>
+
+
+@foreach (var item in Model.Take(12).OrderByDescending(c => c.DateOfInsert).OrderByDescending(c => c.Price)
+.OrderByDescending(c => c.Count > 1))
+{
+
+    <div class="col">
+        <div class="card text-left">
+            <img class="card-img-top" src="~/Images/@item.WareGroupID--@item.WareSubGroupID--@item.Name/@item.Image" alt="">
+            <div class="card-body">
+                <h4 class="card-title">@item.Name</h4>
+                <p class="card-text">@item.Description</p>
+                @if (item.Count > 1)
+                {
+                    <p class="card-text">Price : @item.Price$</p>
+                    <button class="btn btn-success  btn-addbasket  float-end m-1 " onclick="AddToBasket('@item.WareID')">Add to
+                        basket</button>
+                }
+                else
+                {
+                    <span class="text-danger display-6" style="font-size: 1.5em;">Inventory of this ware to be finished !</span>
+
+                }
+                <button class="btn btn-dark  btn-details float-end m-1 " onclick="OpenWarePage('@item.WareID')">Show
+                    details</button>
+            </div>
+        </div>
+    </div>
+}
+
+<a class="text-white text-center">For see more wares, you can select a group in categories</a>

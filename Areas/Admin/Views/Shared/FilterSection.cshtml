@@ -1,0 +1,84 @@
+@model MainProject.Admin.ViewModels.GeneralGroup
+
+
+<div id="subgroupsection">
+    <nav class="navbar navbar-expand-sm border border-1 border-dark-subtle rounded rounded-2 ">
+        <span class="navbar-brand" href="#">Filters</span>
+
+        <div class="dropdown m-3 ">
+            <button class="btn btn-group w-100  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Group
+            </button>
+            <div class="dropdown-menu" aria-labelledby="triggerId">
+                @foreach (var item in Model.WareGroups)
+                {
+                    <button class="dropdown-item"
+                        onclick="SetGroup('@item.WareGroupID','@item.WareGroupName')">@item.WareGroupName</button>
+                }
+
+            </div>
+        </div>
+
+        <div class="dropdown m-3 ">
+            @if (Model.WareSubgroups.Count() > 0)
+            {
+                <button class="btn btn-group w-100  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    SubGroup
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                    @foreach (var item in Model.WareSubgroups)
+                    {
+                        <a class="dropdown-item"
+                            onclick="SetSubGroup('@item.WareSubGroupID','@item.WareSubGroupName')">@item.WareSubGroupName</a>
+                    }
+                </div>
+
+            }
+        </div>
+
+        <span class="text-dark m-2 " id="textgroup"></span>
+        <span class="text-dark m-2 " id="textsubgroup"></span>
+
+    </nav>
+</div>
+
+<script>
+
+
+
+    function SetGroup(id, name) {
+        $.ajax({
+            url: "/Admin/Home/FilterByGroup/" + id,
+            success: function (data) {
+                $("#wares").html(data);
+                $("#textgroup").html("Group : " + name);
+
+
+            }
+        })
+
+        $.ajax({
+            url: "/Admin/Home/ShowSubGroups/" + id,
+            success: function (data) {
+                $("#subgroupsection").html(data);
+
+            }
+        })
+
+
+    }
+
+    function SetSubGroup(id, name) {
+        $.ajax({
+            url: "/Admin/Home/FilterBySubGroup/" + id,
+            success: function (data) {
+                $("#wares").html(data);
+                $("#textsubgroup").html("SubGroup : " + name);
+            }
+        })
+    }
+
+</script>

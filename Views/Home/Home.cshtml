@@ -1,0 +1,41 @@
+@model IEnumerable<Database.Ware>
+
+<label class="display-6 ">Home</label>
+<hr>
+<div class="row">
+
+    <partial name="_SearchBar" model="Model">
+
+</div>
+<div class="text-center ">
+    <label class="display-6 ">Newest Wares
+        <hr>
+    </label>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <partial name="_NewestWares">
+</div>
+
+<div class="text-center ">
+    <label class="display-6 ">MostViewed Wares
+        <hr>
+    </label>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <partial name="_MostViewedWares">
+</div>
+
+<div class="text-center ">
+    <label class="display-6 ">MostExpensive Wares
+        <hr>
+    </label>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <partial name="_MostExpensiveWares">
+</div>
+</div>
+

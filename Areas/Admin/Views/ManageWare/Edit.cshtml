@@ -1,0 +1,81 @@
+@model MainProject.ViewModels.WareViewModel
+
+<form asp-area="Admin" asp-action="Edit" enctype="multipart/form-data" method="post" class="w-100" id="formData">
+
+    <label class="display-6 ">Sub Group:</label>
+
+    <input type="hidden" asp-for="WareID">
+    <input type="hidden" asp-for="DateOfInsert">
+    <input type="hidden" asp-for="WareGroupID">
+
+
+
+    <div>
+        <select asp-for="WareSubGroupID" class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75"
+            style="background-color: #ECFEFF;" asp-items="@ViewBag.DropdownItems">
+        </select>
+    </div>
+
+    <div>
+        <label class="display-6 ">Name :</label>
+        <input asp-for="Name" class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" type="text"
+            placeholder="Enter ware name...">
+    </div>
+
+    <div>
+        <label class="display-6 ">Description :</label>
+
+        <textarea asp-for="Description"
+            class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" type="text"
+            placeholder="Enter ware description..."> </textarea>
+    </div>
+    <div>
+
+        <label class="display-6 ">Price :</label>
+        <input asp-for="Price" class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" type="number"
+            placeholder="Enter ware price..." min="0.00" step="0.01">
+
+    </div>
+    <div>
+
+        <label class="display-6 ">Count :</label>
+        <input asp-for="Count" class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" type="number"
+            placeholder="Enter ware price..." min="0" step="1">
+
+    </div>
+    <div>
+        <label class="display-6 ">Main Image :</label>
+
+        <input asp-for="Image" type="file"
+            class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" id="mainImageInput">
+        <div class="row justify-content-center ">
+            <img src="img/PngItem_1003903.png" class="img-fluid w-25 border border-1  border-dark-subtle m-2"
+                id="mainImage" hidden>
+
+        </div>
+    </div>
+
+    <div>
+        <label class="display-6 ">Walpaper :</label>
+
+        <input asp-for="Walpapers" type="file"
+            class="form-control me-2 border  border-1  border-dark rounded  rounded-4 w-75 m-2 "
+            style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" id="mainImageInput"
+            multiple>
+
+    </div>
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="submit">
+        Edit</button>
+
+</form>
+
+<div class="container">
+    <button class="btn btn-success  btn-home rounded rounded-5 "><i class="bi bi-house display-6 "
+            data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Homepage" onclick="OpenWares()"></i></button>
+</div>

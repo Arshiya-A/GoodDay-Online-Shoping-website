@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodDay Shop</title>
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        asp-append-version="true">
+    <link rel="stylesheet" href="~/css/sliderstyle.css" asp-append-version="true">
+    <link rel="icon" type="image/x-icon" href="/GoodDay.ico">
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+
+</head>
+
+<body>
+
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="row text-center justify-content-center ">
+                <h1 class="display-1 mb-5 ">Green AdminPanel <i
+                        class="bi bi-check rounded rounded-5 bg-success text-white"></i></h1>
+            </div>
+            <br>
+            <partial name="_SideBar">
+                <div class="col border border-1 border-dark-subtle  ">
+                    <label class="display-6 " id="adminPanelTitle">Home</label>
+                    <hr>
+                    <div class="row">
+
+                        @if (ViewBag.Groups != null)
+                        {
+                            <partial name="Search" model="ViewBag.Groups"></partial>
+                            <partial name="FilterSection" model="ViewBag.Groups"></partial>
+                        }
+
+                        <div class="row row-cols-1 row-cols-md-3 g-4" id="wares">
+                            @RenderBody()
+                            @RenderSection("Scripts", false)
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+        </div>
+
+        <script src="js/mobileMode.js"></script>
+
+
+        <button class="btn btn-success btn-category rounded rounded-5  " onclick="openSideNavbar()"><i
+                class="bi bi-list-task display-6 " data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Open Categorymenu"></i></i>
+        </button>
+
+        <partial name="_SideBarMobile"></partial>
+
+        <script>
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+
+        </script>
+
+        <div class="container mt-5 ">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                </ul>
+                <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+            </footer>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+        <div class="modal modal-sm  fade " id="miniModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm ">
+                <div class="modal-content">
+                    <div class="modal-body ">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal modal-sm  fade " id="mediumModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-body ">
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="modal modal-sm  fade " id="sliderModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm ">
+                <div class="modal-content">
+                    <div class="slider-modal-body ">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="..." class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div> -->
+</body>
+
+</html>

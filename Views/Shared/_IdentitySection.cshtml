@@ -1,0 +1,21 @@
+<div class="container">
+
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager;
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <button class="btn btn-success  btn-signin rounded rounded-4" type="submit" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="Logout" onclick="Logout()"> Logout</button>
+
+    }
+    else
+    {
+        <button class="btn btn-success  btn-signin rounded rounded-4" type="submit" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="Sign In" onclick="OpenRegisterPage()"> Sign in</button>
+        <button class="btn btn-success  btn-login rounded rounded-4" type="submit" data-bs-toggle="tooltip"
+            data-bs-placement="top" title="Login" onclick="OpenLoginPage()"> Login </button>
+    }
+
+
+</div>

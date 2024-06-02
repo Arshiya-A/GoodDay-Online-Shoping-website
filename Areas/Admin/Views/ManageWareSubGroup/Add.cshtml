@@ -1,0 +1,22 @@
+@model Database.WareSubgroup
+
+
+<form asp-action="Add" asp-area="Admin" method="post">
+
+    <label class="display-6 ">Group:</label>
+    <br>
+    <select asp-for="WareGroupID" class="form-control me-2 border  border-1  border-dark rounded  rounded-4 "  style="background-color: #ECFEFF;"
+        asp-items="@ViewBag.DropdownItems">
+    </select>
+
+    <label class="display-6 ">SubGroup Name:</label>
+    <br>
+    <input asp-for="WareSubGroupName"
+        class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " style="background-color: #ECFEFF;"
+        type="text" placeholder="Enter SubGroup name..." aria-label="Search">
+    <hr>
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="submit">
+        Add</button>
+
+</form>

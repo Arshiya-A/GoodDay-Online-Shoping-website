@@ -1,0 +1,99 @@
+@model IEnumerable<Database.ShopingCart>
+
+<form asp-action="MakeOrder" asp-controller="Order" method="post">
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        @{
+            var wares = (IEnumerable<Database.Ware>)ViewBag.IEnumrableWares;
+            int waresType = 0;
+            int waresCount = 0;
+            int waresPrice = 0;
+            int priceOfOne = 0;
+            int price = 0;
+
+
+        }
+        @foreach (var item in Model)
+        {
+            try
+            {
+                var name = wares.FirstOrDefault(c => c.WareID == item.WareID);
+
+                waresType = Model.Count();
+                waresCount += item.Count;
+                waresPrice += item.Price;
+                priceOfOne = item.Price * item.Count;
+                price += priceOfOne;
+                <div class="col">
+                    <div class="card text-left">
+                        <img class="card-img-top" src="img/5bbc00e30f8a2-aaede6acf259f5af3df4cbe6aa3d01d4.png" alt="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="card-title">@name.Name</h4>
+                                    <p class="card-text">Price of one : @item.Price</p>
+                                    <p class="card-text ">Count : @item.Count</p>
+                                    <p class="card-text">Price $ : @priceOfOne</p>
+                                </div>
+                                <div class="col">
+                                    <img class="float-end" style="width: 150px; hight: 95px;"
+                                        src="~/Images/@wares.First(c => c.WareID == item.WareID).WareGroupID--@wares.First(c => c.WareID == item.WareID).WareSubGroupID--@wares.First(c => c.WareID == item.WareID).Name/@wares.First(c => c.WareID == item.WareID).Image">
+
+                                </div>
+                            </div>
+                            <a class="btn btn-light   btn-remove  float-end m-1 "
+                                onclick="RemoveFromShopingCart('@item.WareID')">Remove <i class="bi bi-dash-lg"></i></a>
+                            <a class="btn btn-warning    btn-remove  float-end m-1 "
+                                onclick="DeleteFromShopingCart('@item.ShopingCartID','@item.Count')">Delete <i
+                                    class="bi bi-trash"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+            catch
+            {
+                <script>
+                    DeleteFromShopingCart('@item.ShopingCartID', '0');
+                </script>
+            }
+        }
+    </div>
+
+    <div class="text-center ">
+        <hr>
+        <label class="display-6 m-1">Ware Type :<span class="display-6 ">@waresType</span></label>
+        <br>
+        <label class="display-6 m-1">Ware Count :<span class="display-6 ">@waresCount</span></label>
+        <br>
+        <label class="display-6 m-1">Sum of prices :<span class="display-6 ">@price</span></label>
+    </div>
+
+    @if (waresType > 0)
+    {
+        <label class="display-6 ">DelivaryPlace :</label>
+        <input class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " name="delivaryPlace"
+            style="background-color: #ECFEFF;" type="search" placeholder="Enter your phonenumber..." aria-label="Search"
+            id="inputPlace">
+        <hr>
+        <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " onclick="Pay()"> Pay <i
+                class="bi bi-credit-card ms-1 "></i></button>
+    }
+
+    <button class="btn btn-light btn-remove  d-flex rounded rounded-4 float-end m-1 " data-bs-dismiss="modal"
+        type="button">
+        Cancel</button>
+
+</form>
+
+<div id="fieldMessage" hidden>
+    <span class="display-6">Please fill DelivaryPlace field</span>
+    <hr>
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="button"
+        onclick="CloseModal()">
+        Ok</button>
+</div>

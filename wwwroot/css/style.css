@@ -1,0 +1,178 @@
+html {
+    background-color: #ECFEFF;
+}
+
+body {
+    background-color: #ECFEFF;
+}
+
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid black;
+}
+
+.card-img-top {
+    cursor: pointer;
+}
+
+.path-item {
+    cursor: pointer;
+}
+
+.btn-basket {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #4EF037;
+    color: black;
+}
+
+.btn-home {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    background-color: #4EF037;
+    color: black;
+
+}
+
+.btn-category {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: #4EF037;
+    color: black;
+
+
+}
+
+.btn-signin {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #4EF037;
+    color: black;
+
+
+}
+
+.btn-login {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background-color: #4EF037;
+    color: black;
+
+}
+
+.btn-search {
+    background-color: #128494;
+    color: white;
+}
+
+.card-body {
+    background-color: #ECFEFF;
+}
+
+.btn-addbasket {
+    background-color: #4EF037;
+    color: black;
+}
+
+.btn-details {
+    background-color: #00B7C2;
+    color: black;
+}
+
+.btn-remove {
+    background-color: #c20000;
+    color: white;
+}
+
+.modal-body {
+    background-color: #ECFEFF;
+}
+
+.validation-modal-body {
+    background-color: #ECFEFF;
+}
+
+.modal-header {
+    background-color: #ECFEFF;
+
+}
+
+.side-navbar {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ECFEFF;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.side-navbar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+
+img {
+    background-color: #ECFEFF;
+}
+
+@media only screen and (max-width: 850px) {
+    .side-category {
+        display: none;
+    }
+
+    .btn-category {
+        display: block;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 850px) {
+
+    .btn-category {
+        display: none;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+}
+
+
+
+
+#imgWallpaper:hover {
+    background-color: rgb(206, 224, 225);
+    transition: .5s;
+}
+
+#imgWallpaper>img {
+    min-width: 100px;
+    max-width: 200px;
+
+    min-height: 100px;
+    max-height: 300px;
+}
+
+
+#mainImage {}

@@ -1,0 +1,15 @@
+@model Database.WareGroup
+
+<label class="display-6 ">Group Name:</label>
+<br>
+<form asp-action="Edit" asp-area="Admin" method="post">
+    <input asp-for="WareGroupID" type="hidden">
+    <input asp-for="WareGroupName" name="WareGroupName"
+        class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " style="background-color: #ECFEFF;"
+        type="text" placeholder="Enter group name..." aria-label="Search">
+    <hr>
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="submit">
+        Edit</button>
+
+</form>

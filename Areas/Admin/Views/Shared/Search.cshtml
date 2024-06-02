@@ -1,0 +1,35 @@
+@model MainProject.Admin.ViewModels.GeneralGroup
+
+
+
+<nav class="navbar navbar-light text-center ">
+    <div class="container-fluid">
+        <form class="d-flex search-bar w-75 ">
+            <input class="form-control me-2 border  border-1  border-dark-subtle rounded  rounded-4 "
+                style="background-color: rgb(236, 254, 255); --darkreader-inline-bgcolor: #003b3e;" placeholder="Search"
+                aria-label="Search" id="adminSearchInput">
+            <button class="btn btn-light btn-search  d-flex rounded rounded-4" type="button" onclick="AdminSearch()">
+                Search
+                <i class="bi bi-search ms-1 "></i> </button>
+        </form>
+    </div>
+</nav>
+
+
+<script>
+
+    function AdminSearch() {
+        $("#adminPanelTitle").html("Search");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/Home/Search/",
+            data: { query: $("#adminSearchInput").val() },
+            success: function (data) {
+                $("#wares").html(data);
+            },
+
+        })
+    }
+
+
+</script>

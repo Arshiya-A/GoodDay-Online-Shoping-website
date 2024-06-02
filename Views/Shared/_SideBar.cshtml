@@ -1,0 +1,41 @@
+@model MainProject.ViewModels.GeneralGroup;
+
+
+
+
+<div class="col border border-1  border-dark-subtle side-category" style="max-width: 25%;">
+    <div class="dropdown m-3 ">
+        <label class="display-6 ">Categories</label>
+        <hr>
+        @foreach (var item in Model.WareGroups)
+        {
+            <button class="btn btn-group w-100  dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                @item.WareGroupName
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="triggerId">
+                @foreach (var sub in Model.WareSubgroups.Where(c => c.WareGroupID == item.WareGroupID))
+                {
+                    <a class="dropdown-item" href="#" onclick="GoToSubGroups('@sub.WareSubGroupID')">@sub.WareSubGroupName</a>
+                }
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+
+    function GoToSubGroups(wareSubId) {
+        $.ajax({
+            method: "GET",
+            url: "/Home/GoToSubGroup/",
+            data: { "wareSubId": wareSubId },
+            success: function (data) {
+                $("#mainSection").html(data);
+            },
+        })
+    }
+
+</script>

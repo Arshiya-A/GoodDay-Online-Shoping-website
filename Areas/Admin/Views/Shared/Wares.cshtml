@@ -1,0 +1,90 @@
+@model IEnumerable<Database.Ware>
+
+<div class="row w-100">
+    <button class="btn btn-light   btn-details float-end m-1 w-25 m-2 display-6 " onclick="CreatePage()"> Create Ware
+    </button>
+</div>
+
+@foreach (var item in Model.OrderByDescending(c => c.DateOfInsert))
+{
+    <div class="col">
+        <div class="card text-left">
+            <img class="card-img-top" src="~/Images/@item.WareGroupID--@item.WareSubGroupID--@item.Name/@item.Image"
+                alt="@item.Name" onclick="ShowSlider('@item.WareID')" id="mainImage">
+            <div class="card-body">
+                <h4 class="card-title">@item.Name</h4>
+                <p class="card-text">@item.Description</p>
+                <p class="card-text">Price : @item.Price</p>
+
+
+                <button class="btn btn-warning  float-end m-1 " onclick="EditWarePage('@item.WareID')">Edit <i
+                        class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-danger    btn-remove  float-end m-1 " onclick="DeleteWarePage('@item.WareID')">Delete
+                    <i class="bi bi-trash"></i></button>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<script>
+
+    function CreatePage() {
+        $("#adminPanelTitle").html("Create Ware");
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWare/Add",
+            success: function (data) {
+                $("#wares").html(data)
+            }
+        })
+    }
+
+
+    function DeleteWarePage(id) {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWare/Delete",
+            data: { "id": id },
+            success: function (data) {
+                $("#mediumModal").modal('show');
+                $(".modal-body").html(data);
+            }
+        })
+    }
+
+    function EditWarePage(id) {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWare/Edit",
+            data: { "id": id },
+            success: function (data) {
+                $("#wares").html(data)
+            }
+        })
+    }
+
+
+    function ShowSlider(id) {
+
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWare/ShowWallpaper",
+            data: { "id": id },
+            success: function (data) {
+                $("#mediumModal").modal('show');
+                $(".modal-body").html(data);
+            }
+        })
+
+    }
+
+
+
+</script>
+
+
+

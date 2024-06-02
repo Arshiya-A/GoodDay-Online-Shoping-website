@@ -1,0 +1,89 @@
+@model Database.Ware;
+@{
+    var images = Model.Walpapers.Split("|-|");
+
+    var trimImages = new List<string>();
+    foreach (var item in images)
+    {
+        trimImages.Add(item.TrimStart());
+    }
+    trimImages.RemoveAt(trimImages.Count() - 1);
+
+}
+
+<label class="display-6 ">@Model.Name</label>
+<hr>
+
+<nav class="navbar navbar-expand-sm m-2 border border-1 border-dark-subtle rounded  rounded-2 ">
+    <b class="display-6">Your Path : </b> <span class="display-6 path-item">
+        <span class="display-6 path-item" onclick="BackToHome()"> Home</span>
+        <span class="display-6 "> &gt; </span>
+        <span class="display-6">@Model.Name</span>
+</nav>
+
+<div class="row">
+
+
+    <div class="col-xl-8 ">
+
+        <div class="row justify-content-center ">
+            <div id="carouselExample" class="carousel slide w-50 h-50 ">
+                <div class="carousel-inner">
+
+                    @foreach (var item in trimImages)
+                    {
+                        <div class="carousel-item active">
+                            <img src="~/Images/@Model.WareGroupID--@Model.WareSubGroupID--@Model.Name/Wallpaper/@item"
+                                class="d-block w-100" alt="...">
+                        </div>
+
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon text-bg-dark" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon text-bg-dark  " aria-hidden="true"></span>
+                    <span class="visually-hidden ">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="text-center ">
+            <label class="display-6 m-1 ">Category : <span>@ViewBag.subGroup</span></label>
+            <br>
+            <label class="display-6 m-1 ">Price : <span>@Model.Price $</span></label>
+            <hr>
+        </div>
+
+        <p>
+            @Model.Description
+        </p>
+    </div>
+</div>
+
+@if (Model.Count > 1)
+{
+    <a class="btn btn-success  btn-addbasket  float-end m-1 " onclick="AddToBasket('@Model.WareID')">Add to basket</a>
+}
+else
+{
+    <span class="text-danger display-6 float-end m-1" style="font-size: 1.5em;">Inventory of this ware to be finished !</span>
+}
+
+</div>
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="row text-center justify-content-center ">
+        </div>
+    </div>
+    <button class="btn btn-success  btn-home rounded rounded-5 " onclick="BackToHome()"><i
+            class="bi bi-house display-6 " data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Go to Homepage"></i></button>
+</div>

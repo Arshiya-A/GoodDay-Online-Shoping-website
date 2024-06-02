@@ -1,0 +1,47 @@
+@model IEnumerable<Database.ShopingCart>
+@{
+    int count = 0;
+
+    foreach (var item in Model)
+    {
+        count += item.Count;
+    }
+}
+
+
+<div class="containter" id="basketSection">
+    <button class="btn btn-success  btn-basket rounded rounded-5 " onclick="OpenBasket()"><i
+            class="bi bi-cart4 display-6 " data-bs-toggle="tooltip" data-bs-placement="top" title="Go to basket"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span id="wareCount">@count</span>
+            <span class="visually-hidden">unread messages</span>
+        </span></button>
+</div>
+
+
+
+<div id="errorBody" hidden>
+    <span class="display-6 ">Inventory of this ware to be finished !</span>
+
+    <hr>
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="button"
+        onclick="CloseModal()">
+        Ok</button>
+</div>
+
+<script>
+
+    if (@ViewBag.WareHouse == 0) {
+        $("#errorBody").ready(function () {
+            $("#mediumModal").modal('show');
+            $(".modal-body").html(document.getElementById("errorBody").innerHTML);
+        })
+
+        function CloseModal() {
+            $("#mediumModal").modal('hide');
+        }
+
+    }
+
+
+</script>

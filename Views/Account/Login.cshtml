@@ -1,0 +1,60 @@
+@model MainProject.ViewModels.Identity.LoginViewModel
+
+
+<form asp-action="Login" asp-controller="Account" method="POST" id="loginForm">
+
+    <label class="display-6 ">Name:</label>
+    <input class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " asp-for="Name"
+        style="background-color: #ECFEFF;" type="search" placeholder="Enter your name..." aria-label="Search">
+    <hr>
+
+    <label class="display-6 ">Password:</label>
+    <input class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " asp-for="Password"
+        style="background-color: #ECFEFF;" type="search" placeholder="Enter your family..." aria-label="Search">
+    <hr>
+
+    <label class="display-6 ">Phonenumber:</label>
+    <input class="form-control me-2 border  border-1  border-dark rounded  rounded-4 " asp-for="PhoneNumber"
+        style="background-color: #ECFEFF;" type="search" placeholder="Enter your phonenumber..." aria-label="Search">
+    <hr>
+
+
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="button" onclick="Submit()">Login</button>
+
+    <button class="btn btn-light btn-addbasket  d-flex rounded rounded-4 float-end m-1 " type="button"
+        data-bs-dismiss="modal"> Cancel</button>
+
+</form>
+
+<div id="modalSection" hidden>
+    <span class="display-6 text-dark" id="modalSectionText">Please fill all the fields !</span>
+
+    <hr>
+    <button class="btn btn-light btn-addbasket  d-flex rounded rounded-4 float-end m-1 " type="button"
+        data-bs-dismiss="modal"> Ok</button>
+</div>
+
+
+<script>
+    function Submit() {
+        var name = $('input[name="Name"]');
+        var password = $('input[name="Password"]');
+        var phonenumber = $('input[name="PhoneNumber"]');
+
+        if (!name
+            || !password.val()
+            || !phonenumber.val()) {
+
+            $("#modalSectionText").html("Please fill all the fields !");
+            $("#validationModal").modal('show');
+            $(".validation-modal-body").html($("#modalSection").html());
+        }
+
+        else {
+            $("#loginForm").submit();
+        }
+
+
+    }
+</script>

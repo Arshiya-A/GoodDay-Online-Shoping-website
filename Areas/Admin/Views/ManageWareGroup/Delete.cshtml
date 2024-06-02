@@ -1,0 +1,20 @@
+@model Database.WareGroup
+
+<input asp-for="WareGroupID" type="hidden" id="waregroupID">
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            method: "POST",
+            url: "/Admin/Managewaregroup/FinallyDelete",
+            data: { id: $("#waregroupID").val() },
+            success: function (data) {
+                location.reload();
+            }
+        })
+    });
+
+</script>

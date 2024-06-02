@@ -1,0 +1,23 @@
+@model MainProject.ViewModels.Error
+
+<div id="errorBody">
+    <span class="display-6 ">@Model.Reason</span>
+
+    <hr>
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="button"
+        onclick="CloseModal()">
+        Ok</button>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $("#mediumModal").modal('show');
+        $(".modal-body").html(document.getElementById("errorBody").innerHTML);
+    })
+
+    function CloseModal() {
+        $("#mediumModal").modal('hide');
+    }
+
+</script>

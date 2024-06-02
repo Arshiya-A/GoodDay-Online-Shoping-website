@@ -1,0 +1,31 @@
+@model MainProject.ViewModels.Wallpaper
+
+<div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
+
+    @for (int i = 0; i < Model.Images.Count(); i++)
+    {
+        <div class="col-12 col-sm-6 col-lg-3 border border-dark-subtle rounded rounded-2 " onclick="ShowImage('@i')"
+            id="imgWallpaper"> 
+            <img class="w-100" src="@Model.Directory/Wallpaper/@Model.Images[i]"
+                data-target="#carouselExample" data-slide-to="1">
+        </div>
+
+   
+    }
+
+
+</div>
+
+
+
+
+<script>
+
+    function ShowImage(index) {
+        $("#sliderModal").modal('show')
+        $(".slider-modal-body").html(document.querySelectorAll("#imgWallpaper")[index].innerHTML);
+    }
+
+
+
+</script>

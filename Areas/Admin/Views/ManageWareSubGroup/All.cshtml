@@ -1,0 +1,73 @@
+@model IEnumerable<Database.WareSubgroup>
+<div class="row w-100">
+    <button class="btn btn-light   btn-details float-end m-1 w-25 m-2 display-6 " onclick="CreateWareSubGroup()"> Create
+    </button>
+
+    @foreach (var item in Model)
+    {
+
+        <div class="row">
+            <div class="card text-left .modal-body" style="background-color:  #ECFEFF;">
+                <img class="card-img-top" src="img/5bbc00e30f8a2-aaede6acf259f5af3df4cbe6aa3d01d4.png" alt="" id="slider">
+                <div class="card-body">
+                    <h4 class="card-title">@item.WareSubGroupName</h4>
+
+                    <button class="btn btn-warning  float-end m-1 " onclick="EditWareSubGroup('@item.WareSubGroupID')">Edit
+                      <i
+                        class="bi bi-pencil-square"></i></button>
+                    <button class="btn btn-danger    btn-remove  float-end m-1 "
+                        onclick="DeleteWareSubGroup('@item.WareSubGroupID')">Delete <i class="bi bi-trash"></i></button>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+
+<script>
+    function CreateWareSubGroup() {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWareSubGroup/add",
+            success: function (data) {
+                $("#mediumModal").modal('show');
+                $(".modal-body").html(data);
+            }
+        })
+    }
+
+    function DeleteWareSubGroup(deleteId) {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWareSubGroup/Delete",
+            data: { id: deleteId },
+            success: function (data) {
+
+                $(".modal-body").html(data);
+            }
+        })
+    }
+
+    function EditWareSubGroup(editId) {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/ManageWareSubGroup/Edit",
+            data: { id: editId },
+            success: function (data) {
+                $("#mediumModal").modal('show');
+                $(".modal-body").html(data);
+            }
+        })
+    }
+</script>
+
+
+<div class="container">
+    <button class="btn btn-success  btn-home rounded rounded-5 "><i class="bi bi-house display-6 "
+            data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Homepage" onclick="OpenWares()"></i></button>
+</div>

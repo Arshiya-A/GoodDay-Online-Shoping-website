@@ -1,0 +1,73 @@
+@model IEnumerable<Database.Order>
+@{
+    IEnumerable<Database.Ware> wares = ViewBag.Wares;
+    IEnumerable<Database.Customer> customers = ViewBag.Customers;
+}
+
+
+<div class="row w-100">
+
+    @foreach (var item in Model.OrderByDescending(c => c.OrderDate))
+    {
+
+        <div class="row">
+            <div class="card text-left .modal-body" style="background-color:  #ECFEFF;">
+                <img class="card-img-top" src="img/5bbc00e30f8a2-aaede6acf259f5af3df4cbe6aa3d01d4.png" alt="" id="slider">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title display-6">Customer :@customers.First(c => c.CustomerID ==
+                            item.CustomerID).Name
+                                @customers.First(c => c.CustomerID == item.CustomerID).Family</h4>
+                            <h5 class="card-title display-6">Ware : @wares.First(c => c.WareID == item.WareID).Name</h5>
+                            <h6 class="card-title display-6">DelivaryPlace : @item.DelivaryPlace</h6>
+                            <h6 class="card-title display-6">OrderDate : @item.OrderDate</h6>
+                        </div>
+
+                        <div class="col">
+                            <img src="~/Images/@item.WareID--@wares.First(c => c.WareID == item.WareID).WareSubGroupID--@wares.First(c => c.WareID == item.WareID).Name/@wares.First(c => c.WareID == item.WareID).Image"
+                                class="float-end">
+                        </div>
+                    </div>
+                    <button class="btn btn-success  btn-addbasket  float-end m-1 " onclick="DoneOrder('@item.OrderID')">Done order</button>
+                    <button class="btn btn-dark  btn-details float-end m-1 "
+                        onclick="GetCustomerInfo('@item.CustomerID')">Customer info</button>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+<script>
+
+    function GetCustomerInfo(id) {
+        $.ajax({
+            method: "GET",
+            url: "/Admin/Order/GetCustomerInfo/",
+            data: { "id": id },
+            success: function (data) {
+                $("#mediumModal").modal('show');
+                $(".modal-body").html(data);
+            }
+        })
+    }
+
+    function DoneOrder(id) {
+        $.ajax({
+            method: "POST",
+            url: "/Admin/Order/DoneOrder/",
+            data: { "id": id },
+            success: function (data) {
+                $("#wares").html(data);
+            }
+        })
+    }
+
+
+
+</script>

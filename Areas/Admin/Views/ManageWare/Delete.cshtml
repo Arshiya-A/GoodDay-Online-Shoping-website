@@ -1,0 +1,26 @@
+@model Database.Ware
+
+<form asp-area="Admin" asp-action="FinallyDelete" method="post">
+    <input asp-for="WareID" type="hidden" name="id">
+    <span class="display-6 ">Are you sure for delete <b>@Model.Name</b> ?</span>
+
+    <hr>
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="submit">
+        Yes</button>
+
+    <button class="btn btn-light btn-addbasket d-flex rounded rounded-4 float-end m-1 " type="button"
+        onclick="CloseModal()">
+        No</button>
+</form>
+
+
+<script>
+
+    function CloseModal() {
+        $("#mediumModal").modal('hide');
+    }
+
+
+
+</script>
